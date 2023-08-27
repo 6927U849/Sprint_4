@@ -1,0 +1,63 @@
+package pageobject;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.FluentWait;
+import org.openqa.selenium.support.ui.Wait;
+
+import java.time.Duration;
+
+
+public class MainPage {
+
+    private final String site = "https://qa-scooter.praktikum-services.ru/";
+    public void openSite() {driver.get(site); }
+// url главной страницы-----------------------------------------------------------
+
+
+    public static By orderButtonAbove = By.xpath(".//button[@class='Button_Button__ra12g']");
+// кнопка Заказать в шапке сайта
+    public static By orderButtonCenter = By.xpath(".//button[contains(@class, 'Button_Middle__1CSJM')]");
+// кнопка заказать по центру сайта
+    private final By cookieButton = By.id("rcc-confirm-button");
+// кнопка с куки
+    private final By frequentlyAskedQuestionsHeader = By.xpath("//div[@class='Home_FourPart__1uthg']//div[@class='Home_SubHeader__zwi_E']");
+// Заголовок Вопросы о важном new
+
+//-----------------------------------------------------------------------------------
+    private final WebDriver driver;
+    public MainPage(WebDriver driver) {this.driver = driver;}
+
+// Методы общие ----------------------------------------------------------
+
+    public void clickCookie() {
+        driver.findElement(cookieButton).click();//кликнуть на принятие куки
+
+    }
+//Методы заказа --------------------------------------------------------------
+    public void clickOrderButton(By orderButton) {
+        driver.findElement(orderButton).click();//нажать на кнопу Заказать
+
+    }
+
+//Методы для вопрос-ответ--------------------------------------------------
+public void goToFAQ() {
+    WebElement faqHeader = driver.findElement(frequentlyAskedQuestionsHeader);
+    JavascriptExecutor jsExecutor = (JavascriptExecutor) driver;
+    jsExecutor.executeScript("arguments[0].scrollIntoView();", faqHeader);//проскролить до заголовка Вопросы о важном new
+}
+
+    public void openAccordionQuestion(String question) {
+        driver.findElement(By.xpath("//div[@class='accordion__heading']//div[text()='" + question + "']")).click();//метод для вопросов
+    }
+
+public String getAnswer(String answer) {
+    final Wait<WebDriver> wait = new FluentWait<>(driver).withMessage("Элемент не найден").withTimeout(Duration.ofSeconds(2));
+    wait.until(ExpectedConditions.visibilityOf(driver.findElement(By.xpath("//div[@class='accordion__panel']//p[text()='" + answer + "']"))));
+    return driver.findElement(By.xpath("//div[@class='accordion__panel']//p[text()='" + answer + "']")).getText(); //метод для ответов
+}
+
+}
