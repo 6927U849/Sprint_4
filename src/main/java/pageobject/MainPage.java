@@ -13,11 +13,11 @@ import java.time.Duration;
 
 public class MainPage {
 
+
+// url главной страницы-----------------------------------------------------------
     private final String site = "https://qa-scooter.praktikum-services.ru/";
     public void openSite() {driver.get(site); }
-// url главной страницы-----------------------------------------------------------
-
-
+//--------------------------------------------------------------------------------------
     public static By orderButtonAbove = By.xpath(".//button[@class='Button_Button__ra12g']");
 // кнопка Заказать в шапке сайта
     public static By orderButtonCenter = By.xpath(".//button[contains(@class, 'Button_Middle__1CSJM')]");

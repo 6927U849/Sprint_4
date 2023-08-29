@@ -68,5 +68,6 @@ public class Checklist {
         String reply = mainPage.getAnswer(answer);//Получаем ответ и записываем его в переменную reply
         Assert.assertEquals(answer, reply); //Сравниваем ожидаемые и фактические результаты
     }
+
 }
 

@@ -67,6 +67,6 @@ public class OrderPageAboutRent {
         driver.findElement(notificationOfSuccessfulOrder).isDisplayed();
         //сообщение об успешном заказе
     }
-
+//------
 }
 

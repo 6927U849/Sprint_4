@@ -55,6 +55,6 @@ public class OrderPageForWhom {
         driver.findElement(nextButton).click();
         //нажать на кнопку далее
     }
-
+//----------
 }
 
