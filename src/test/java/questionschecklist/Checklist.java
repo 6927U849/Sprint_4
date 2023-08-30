@@ -1,5 +1,6 @@
 package questionschecklist;
 
+import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -68,6 +69,9 @@ public class Checklist {
         String reply = mainPage.getAnswer(answer);//Получаем ответ и записываем его в переменную reply
         Assert.assertEquals(answer, reply); //Сравниваем ожидаемые и фактические результаты
     }
-
+    @After
+    public void tearDown() {
+        driver.quit();
+    }
 }
 
